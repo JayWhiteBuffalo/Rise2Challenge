@@ -37,7 +37,7 @@ All the set data from each logged workout (exercise, number of sets, weight of e
 
 ## Solution
 
-RunBuddy - Rise2Challenge Will allow a User/Member to create their own personal workout plan, share their results, and gain feedback from other users. 
+Rise2Challenge Will allow a User/Member to create their own personal workout plan, ^share their results^, and ^gain feedback from other users^. 
 
 
 

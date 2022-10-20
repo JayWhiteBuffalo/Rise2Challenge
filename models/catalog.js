@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Workout extends Model {}
+class Catalog extends Model {}
 
-Workout.init(
+Catalog.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -20,10 +20,14 @@ Workout.init(
         key:'id'
       }
     },
-    date_created: {
-      type: DataTypes.DATE,
+    workout_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
+      references: {
+        mode: 'workout',
+        key: 'id'
+      }
+    }
 },
 {
     //connect exercise here
@@ -31,8 +35,8 @@ Workout.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'workout'
+    modelName: 'catalog'
 }
 );
 
-module.exports = Workout;
+module.exports = Catalog;
