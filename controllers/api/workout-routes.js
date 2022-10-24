@@ -31,7 +31,8 @@ router.get('/', (req, res) => {
   router.post('/', (req, res) => {
     if(req.session) {
       Workout.create({
-        name: req.body.title,
+        user_id: req.session.user_id,
+        name: req.body.name,
       })
       .then((dbPostData) => res.json(dbPostData))
       .catch((err) => {
