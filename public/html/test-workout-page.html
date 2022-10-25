@@ -50,27 +50,27 @@
      <!---------List of checkboxes and options----------->
           <div class="list">
                 <label for="workout-task" class="workout-task">
-                  <input type="checkbox" class="workout-checkbox" name="" id="task1">
+                  <input type="checkbox" class="workout-checkbox" name="Arms" id="task1">
                    Arms
                             </label>
                             <label for="workout-task" class="workout-task">
-                   <input type="checkbox" class="workout-checkbox" name="" id="task2">
+                   <input type="checkbox" class="workout-checkbox" name="Legs" id="task2">
                    Legs
                             </label>
                             <label for="workout-task" class="workout-task">
-                   <input type="checkbox" class="workout-checkbox" name="" id="task3">
+                   <input type="checkbox" class="workout-checkbox" name="Chest" id="task3">
                    Chest
                             </label>
                             <label for="workout-task" class="workout-task">
-                   <input type="checkbox" class="workout-checkbox" name="" id="task4">
+                   <input type="checkbox" class="workout-checkbox" name="Back" id="task4">
                    Back
                             </label>
                             <label for="workout-task" class="workout-task">
-                  <input type="checkbox" class="workout-checkbox" name="" id="task4">
+                  <input type="checkbox" class="workout-checkbox" name="Shoulders" id="task4">
                   Shoulders
                             </label>
                             <label for="workout-task" class="workout-task">
-                  <input type="checkbox" class="workout-checkbox" name="" id="task4">
+                  <input type="checkbox" class="workout-checkbox" name="Endurance" id="task4">
                   Endurance
                             </label>
                           </div>
@@ -100,28 +100,20 @@
      <!-- Without form input -->
           <div class="list-2">
             <label for="exercise-task" class="exercise-task">
-                 <input type="checkbox" class="exercise-checkbox"  name="" id="task1">
-                 Bicep Curls
+                 <input type="checkbox" class="exercise-checkbox"  name="Low" id="task1">
+                 Low
             </label>
             <label for="exercise-task" class="exercise-task">
-                 <input type="checkbox" class="exercise-checkbox" name="" id="task2">
-                 Squats
+                 <input type="checkbox" class="exercise-checkbox" name="Medium" id="task2">
+                 Medium
             </label>
             <label for="exercise-task" class="exercise-task">
-                 <input type="checkbox" class="exercise-checkbox" name="" id="task3">
-                 Bench Press
+                 <input type="checkbox" class="exercise-checkbox" name="High" id="task3">
+                 High
             </label>
             <label for="exercise-task" class="exercise-task">
-                 <input type="checkbox" class="exercise-checkbox" name="" id="task4">
-                 Flies
-            </label>
-            <label for="exercise-task" class="exercise-task">
-                <input type="checkbox" class="exercise-checkbox" name="" id="task4">
-                Shoulder Workout
-            </label>
-            <label for="exercise-task" class="exercise-task">
-                <input type="checkbox" class="exercise-checkbox" name="" id="task4">
-                Running
+                 <input type="checkbox" class="exercise-checkbox" name="Insane" id="task3">
+                Insane
             </label>
           </div>
          </div>
@@ -145,8 +137,8 @@
       </div>
 
       <!-- where results copying starts -->
-        <div class="container col-12 col-md-10 col-lg-7 text-center results-cont">
-          <h4 class="result-head">Your Selected workout</h4>
+        <div id = "exCont" class="container col-12 col-md-10 col-lg-7 text-center results-cont">
+          <h4 id = "result-head" class="result-head">Your Selected workout</h4>
           <div class="d-flex flex-wrap justify-content-around result-return">
             <div class="return-text">
               <h5>Workout:</h5>

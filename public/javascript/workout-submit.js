@@ -1,7 +1,28 @@
 
+
+
 //event buttton click wrap
 function test (){ console.log("This is a test")};
+
+function workoutSaveBar () {
+
+    const headerCont = document.getElementById('result-head');
+
+    const workoutNameCont = document.createElement('div')
+    const workoutNameInput = document.createElement('input')
+    workoutNameInput.setAttribute('type', 'text')
+    const workoutSaveBtn = document.createElement('btn')
+    workoutSaveBtn.classList.add('btn', 'btn-lg', 'submit-btn')
+
+
+    headerCont.appendChild(workoutNameCont);
+    workoutNameCont.appendChild(workoutNameInput);
+    headerCont.appendChild(workoutSaveBtn);
+
+}
+
 const handleSubmit = (event) => {
+    
 //if exercise cards already displayed clear them
 //wripe arrays if already existing
 //log results for checked focus section
@@ -10,7 +31,7 @@ const focusCheckboxes = document.querySelectorAll('.workout-checkbox');
 //push to array
     focusCheckboxes.forEach((checkbox) => {
         if (checkbox.checked) {
-            selectedFocus.push(checkbox.id);
+            selectedFocus.push(checkbox.name);
         }
     });
 
@@ -19,41 +40,79 @@ const focusCheckboxes = document.querySelectorAll('.workout-checkbox');
 
     exerciseNameCheckboxes.forEach((checkbox) => {
         if (checkbox.checked) {
-            selectedExerciseName.push(checkbox.id)
+            selectedExerciseName.push(checkbox.name)
         }
     });
     //for results into a JSON obj
     const pump = {
         //workoutName: document.querySelector('.return-text').value,
-        workout: selectedFocus,
+        ex_type: selectedFocus,
 
         //exerciseName: document.querySelector('.return-text').value,
-        exercise: selectedExerciseName,
+        intensity: selectedExerciseName,
     };
     console.log(pump);
 
-    //join arrays
-const exerciseReq = [].concat(selectedFocus, selectedExerciseName);
-console.log(exerciseReq);
+
+
 
 //send request to GET match results from backend 
-
-
 fetch('http://127.0.0.1:3309/api/exercise', {
     method: 'GET',
-    //headers:{
-        //'Content-type': 'application/json',
-        //'Access-Control-Allow-Origin': '*',
-        //'Access-Control-Allow-Methods': 'POST, GET, OPTIONS'
-   // },
-    //body: JSON.stringify(pump),
+    headers:{
+        'Content-type': 'application/json',
+    },
 })
-.then(response => response.json())
-.then(json => console.log(json))
+.then((response) => { return response.json()})
+//.then((allEx) => {
+    //const allExArr = allEx.results;
+    //const exList = allExArr.filter;
+
+.then((allEx => {
+    workoutSaveBar();
+    //Display all exercises
+    for (let i = 0; i < 4; i++){
+function displayEx() {
+    console.log(allEx[i].intensity)
+    let Container = document.getElementById('exCont');
+    const exCard = document.createElement('div');
+    exCard.classList.add('d-flex', 'flex-wrap' ,'justify-content-around', 'result-return','hover');
+    exCard.onclick = function(){
+        if(exCard.classList.contains('select')){
+        exCard.classList.remove('select')
+        }
+        else{
+        exCard.classList.add('select');
+    }}
+    
+    const exType = document.createElement('h3');
+    exType.classList.add('return-text');
+    exType.innerText = allEx[i].ex_type;//put array obj data here
+            
+    const exInt = document.createElement('h3');
+    exInt.classList.add('return-text');
+    exInt.innerText = allEx[i].intensity;//put array obj data here
+
+    const exName= document.createElement('h3');
+    exName.classList.add('return-text');
+    exName.innerText = allEx[i].ex_name;//put array obj data here
+
+    Container.appendChild(exCard);
+    exCard.appendChild(exType);
+    exCard.appendChild(exName);
+    exCard.appendChild(exInt);
+}
+displayEx();
+}
+}))}
+
+
+
+
    //return response.text();
 
 
-};
+
 
 
 //handle return
@@ -86,7 +145,7 @@ fetch('http://127.0.0.1:3309/api/exercise', {
 //     },
 //     body: JSOM.stringify(pump),
 // })
-
+    
 document
 .querySelector(".submit-btn")
 .addEventListener("click", handleSubmit);

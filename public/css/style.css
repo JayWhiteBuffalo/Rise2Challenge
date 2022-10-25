@@ -413,6 +413,14 @@ input{
     color: #026700;
 }
 
+.result-return:hover {
+    opacity: .5;
+}
+
+.select{
+    opacity: .5;
+}
+
 @media screen and (max-width: 350px) {
     .user-info-div {
         width: 100%;
