@@ -2,22 +2,23 @@
 // card is displayed in results-conts
 
 const handleSubmit = (event) => {
+//Collect exercise data from user checkboxes
     event.preventDefault();
-    const workoutCheckboxes = document.querySelectorAll('.workout-checkbox');
-    const selectedWorkouts = [];
-
-    workoutCheckboxes.forEach((checkbox) => {
+    const focusCheckboxes = document.querySelectorAll('.workout-checkbox');
+    const selectedFocus = [];
+//push to array
+    focusCheckboxes.forEach((checkbox) => {
         if (checkbox.checked) {
-            selectedWorkouts.push(checkbox.id);
+            selectedFocus.push(checkbox.id);
         }
     });
 
-    const exerciseCheckboxes = document.querySelectorAll('.exercise-checkbox');
-    const selectedExercises = [];
+    const exerciseNameCheckboxes = document.querySelectorAll('.exercise-checkbox');
+    const selectedExerciseName = [];
 
-    exerciseCheckboxes.forEach((checkbox) => {
+    exerciseNameCheckboxes.forEach((checkbox) => {
         if (checkbox.checked) {
-            selectedExercises.push(checkbox)
+            selectedExerciseName.push(checkbox)
         }
     });
 
@@ -39,5 +40,9 @@ const handleSubmit = (event) => {
         body: JSON.stringify(pump),
     })
 }
+
+//Display exercise
+
+
 
 document.querySelector('.')
