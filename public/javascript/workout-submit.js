@@ -13,13 +13,29 @@ function workoutSaveBar () {
     workoutNameInput.setAttribute('type', 'text')
     const workoutSaveBtn = document.createElement('btn')
     workoutSaveBtn.classList.add('btn', 'btn-lg', 'submit-btn')
+    workoutSaveBtn.setAttribute('id', 'saveBtn')
 
 
     headerCont.appendChild(workoutNameCont);
     workoutNameCont.appendChild(workoutNameInput);
     headerCont.appendChild(workoutSaveBtn);
 
+};
+
+function workoutSubmit () {
+   //locate selected exercises
+   Arr = [];
+   let selectedEx = (document.querySelectorAll(".select"))
+   console.log(selectedEx);
+   selectedEx.forEach((selected) => {
+    Arr.push(selected.id)
+   })
+   console.log(Arr)
 }
+
+//fetch exercises from arr using exercise_id
+//post return to workout db
+
 
 const handleSubmit = (event) => {
     
@@ -64,19 +80,21 @@ fetch('http://127.0.0.1:3309/api/exercise', {
     },
 })
 .then((response) => { return response.json()})
-//.then((allEx) => {
-    //const allExArr = allEx.results;
-    //const exList = allExArr.filter;
-
-.then((allEx => {
+.then((allEx) => {
+    const exList = allEx.filter((exercise) => 
+    {
+        return exercise.ex_type === pump.ex_type && exercise.intensity === pump.intensity
+    })
+    console.log(exList)
     workoutSaveBar();
     //Display all exercises
-    for (let i = 0; i < 4; i++){
+    for (let i = 0; i < exList.length; i++){
 function displayEx() {
-    console.log(allEx[i].intensity)
+    console.log(allEx[i])
     let Container = document.getElementById('exCont');
     const exCard = document.createElement('div');
     exCard.classList.add('d-flex', 'flex-wrap' ,'justify-content-around', 'result-return','hover');
+    exCard.setAttribute('id',allEx[i].id);
     exCard.onclick = function(){
         if(exCard.classList.contains('select')){
         exCard.classList.remove('select')
@@ -102,10 +120,14 @@ function displayEx() {
     exCard.appendChild(exName);
     exCard.appendChild(exInt);
 }
-displayEx();
-}
-}))}
 
+displayEx();
+document
+.querySelector("#saveBtn")
+.addEventListener("click", workoutSubmit)
+}
+})
+}
 
 
 
