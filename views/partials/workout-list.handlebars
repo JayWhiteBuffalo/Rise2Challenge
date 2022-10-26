@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="d-flex justify-content-start">
+        <h5 class="return-name">posted by: {{workout.user.username}}</h5>
+    </div>
+    <div class="d-flex flex-wrap justify-content-around result-return-public">
+        <div class="return-text">
+            <h5>Focus:</h5>
+            <p>{{workout.exercise.ex_type}}</p>
+        </div>
+        <div class="return-text">
+            <h5>Exercise:</h5>
+            {{#each}}
+            {{> exercise-name}}
+            {{/each}}
+        </div>
+        <div class="return-text">
+            <h5>Intensity:</h5>
+            <p>{{workout.exercise.intensity}}</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <h5 class="public-date">date: {{format_date created_at}} </h5>
+    </div>
+</div>

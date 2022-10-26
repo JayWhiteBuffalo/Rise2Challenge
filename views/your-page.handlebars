@@ -1,11 +1,14 @@
-<div class="container d-flex justify-content-between user-info-cont">
+<div class="container d-flex justify-content-between userInfo-info-cont">
+
+    {{log userInfo}}
+
     <h2 class="yp-head">
-        Welcome back, {{user.username}}!
+        Welcome back, {{userInfo.username}}!
     </h2>
-        <p class="yp-info">Age: {{user_profile.age}}</p>
-        <p class="yp-info">Weight: {{user_profile.gender}}</p>
-        <p class="yp-info">Height: {{user_profile.height}}</p>
-        <p class="yp-info">Weight: {{user_profile.weight}}</p>
+        <p class="yp-info">Age: {{userInfo.age}}</p>
+        <p class="yp-info">Weight: {{userInfo.gender}}</p>
+        <p class="yp-info">Height: {{userInfo.height}}</p>
+        <p class="yp-info">Weight: {{userInfo.weight_in_lbs}}</p>
 </div>
 
 <div class="container text-center counter-cont">

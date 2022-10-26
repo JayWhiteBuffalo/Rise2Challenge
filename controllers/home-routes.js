@@ -71,7 +71,14 @@ router.get("/your-page", (req, res) => {
     return;
   }
 
-  res.render("your-page", { loggedIn: req.session.loggedIn });
+  User.findOne({
+    where: {
+      id: req.session.user_id,
+    },
+  }).then((user) => {
+    const userInfo = user.get({ plain: true });
+    res.render("your-page", { userInfo, loggedIn: req.session.loggedIn });
+  });
 });
 
 module.exports = router;

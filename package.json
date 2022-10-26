@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
+		"start": "node server.js",
 		"test": "jest",
 		"stop-win": "Taskkill /IM node.exe /F",
 		"stop-linux": "killall node",

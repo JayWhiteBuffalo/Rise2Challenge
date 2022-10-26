@@ -1,5 +1,7 @@
 # Rise2Challenge
 
+![Workout Page for Read Me](./assets/images/workout-page.jpg)
+
 ## License
 ### [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ### [MIT](https://opensource.org/licenses/MIT)
@@ -39,9 +41,7 @@ A workout tracker where you can choose your exercise focus and intensity and bui
 
 ## Tests
 
-[Heroku Deployment Link](...)
-
-[Future Video Demonstration](...)
+[Heroku Deployment Link](https://thawing-atoll-91539.herokuapp.com/)
 
 ## Usage
 
@@ -67,3 +67,7 @@ A workout tracker where you can choose your exercise focus and intensity and bui
 
 Questions, comments, or concerns? Please Email me at:
 * vincenttoon22@gmail.com
+* masonsemail@email.com
+* phuongsemail@email.com
+* mamadousemail@email.com
+* kainesemail@email.com
