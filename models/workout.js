@@ -21,8 +21,8 @@ Workout.init(
     //   }
     // },
     name: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.JSON,
+      //allowNull: false
     },
     // exercise_list: {
     // type: DataTypes.ARRAY(DataTypes.INTEGER),

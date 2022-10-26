@@ -3,7 +3,6 @@
 ## License
 ### [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ### [MIT](https://opensource.org/licenses/MIT)
-
 ## Description
 
 A workout tracker where you can choose your exercise focus and intensity and build current/future workouts through RESTful API application standards.
