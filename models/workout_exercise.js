@@ -12,7 +12,7 @@ Workout_exercise.init(
         autoIncrement: true
       },
       exercise_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.JSON_ARRAY,
         allowNull: false,
         references:{
             model:'exercise',
@@ -20,7 +20,8 @@ Workout_exercise.init(
             }
       },
       workout_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.JSON,
+        autoIncrement: true,
         allowNull: false,
         references: {
             model: "workout",

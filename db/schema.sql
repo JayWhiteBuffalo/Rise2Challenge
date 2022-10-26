@@ -7,3 +7,10 @@ CREATE TABLE exercise(
     intensity VARCHAR(30),
     ex_type VARCHAR(30)
 );
+
+CREATE TABLE workout(
+      id INTEGER AUTO_INCREMENT primary Key,
+      name VARCHAR(30)
+);
+
+

@@ -5,7 +5,7 @@ const Workout = require("../../models/Workout");
 // get all Workouts
 router.get("/", (req, res) => {
   Workout.findAll({
-    //attributes: ["id", "user_id", "name"],
+    //attributes: ["id", "name"],
     include: [
       {
         model: User_profile,

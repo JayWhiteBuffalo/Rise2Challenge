@@ -5,10 +5,16 @@ const Workout_exercise = require("./workout_exercise")
 const Exercise = require("./exercise.js");
 
 // ******** Associations *********//
-User.belongsToMany(Workout, {
+// User.belongsToMany(Workout, {
+//   through: User_profile,
+//   foreignkey: "user_id",
+// });
+
+User.hasMany(Workout, {
   through: User_profile,
-  foreignkey: "user_id",
+  foreignKey: "user_id"
 });
+
 
 // Workout.belongsTo(User, {
 //   foreignKey: "user_id",
@@ -19,19 +25,19 @@ Workout.belongsToMany(User, {
   foreignKey: "workout_id",
 });
 
-// User.hasOne(User_profile, {
-//   foreignKey: "user_id",
-// });
+User.hasOne(User_profile, {
+  foreignKey: "user_id",
+ });
 
-// User_profile.belongsTo(User, {
-//   foreignKey: "user_id",
-// });
+User_profile.belongsTo(User, {
+   foreignKey: "user_id",
+ });
 
-// User_profile.hasMany(Workout, {
-//   foreignKey: "workout_id",
-// });
+ User_profile.hasMany(Workout, {
+   foreignKey: "workout_id",
+ });
 
-Exercise.belongsTo(Workout, {
+Exercise.belongsToMany(Workout, {
   through: Workout_exercise,
   foreignKey: "exercise_id"
 });
