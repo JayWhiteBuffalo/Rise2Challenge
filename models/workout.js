@@ -12,17 +12,12 @@ Workout.init(
       autoIncrement: true
     },
     //FK to user id
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references:{
-        model:'user',
-        key:'id'
-      }
+    title: {
+      type: DataTypes.TEXT,
     },
     name: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.JSON,
+      //allowNull: false
     },
     // exercise_list: {
     // type: DataTypes.ARRAY(DataTypes.INTEGER),

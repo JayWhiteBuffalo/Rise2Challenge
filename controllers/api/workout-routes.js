@@ -61,10 +61,6 @@ router.post('/', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
   Workout.create({
     name: req.body.name,
-<<<<<<< HEAD
-    exercise_list: req.body.exercise_list
-=======
->>>>>>> develop
   })
   .then(dbWorkoutData => {
     req.session.save(() => {

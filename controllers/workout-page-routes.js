@@ -65,6 +65,22 @@ router.get("/", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
+  Workout.create({
+    name: req.body.name,
+    workout: req.body.workout
+  }).then((dbExerciseData) => {
+    req.session.save(() => {
+      req.session.user_id = dbExerciseData.id;
+      req.session.username = dbExerciseData.username;
+      req.session.loggedIn = true;
+
+      res.json(dbExerciseData);
+    });
+  });
+});
+
 router.get("/:id", withAuth, (req, res) => {
   Exercise.findOne({
     attributes: { exclude: ["password"] },

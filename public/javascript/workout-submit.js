@@ -25,13 +25,58 @@ function workoutSaveBar () {
 function workoutSubmit () {
    //locate selected exercises
    Arr = [];
+   wArr = [];
    let selectedEx = (document.querySelectorAll(".select"))
    console.log(selectedEx);
    selectedEx.forEach((selected) => {
-    Arr.push(selected.id)
+    Arr.push(selected)
    })
-   console.log(Arr)
+   for (let i = 0; i < Arr.length; i++){
+   let wType = Arr[i].firstChild.innerText
+   let wInt = Arr[i].lastChild.innerText
+   let wName = Arr[i].children[1].innerText
+
+   let newWorkoutObject = new Object();
+   newWorkoutObject = {
+    "name" : wName,
+    "ex_type": wType,
+    "intensity" : wInt
+   };
+
+
+
+   wArr.push(newWorkoutObject)
+
 }
+console.log(wArr)
+var workoutJSON = JSON.stringify(wArr);
+console.log(workoutJSON)
+let workoutJSON1 = workoutJSON.replace('[', "")
+let workout = workoutJSON1.replace(']'," ")
+console.log(workout)
+
+
+const post = {
+    name: workout,
+}
+
+fetch('http://127.0.0.1:3001/api/workout', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    body:post})
+    .then(function(response){
+        return response.json()
+    })
+
+
+}
+
+
+
+
 
 //fetch exercises from arr using exercise_id
 //post return to workout db
@@ -60,20 +105,26 @@ const focusCheckboxes = document.querySelectorAll('.workout-checkbox');
         }
     });
     //for results into a JSON obj
-    const pump = {
+    const prepump = {
         //workoutName: document.querySelector('.return-text').value,
         ex_type: selectedFocus,
 
         //exerciseName: document.querySelector('.return-text').value,
         intensity: selectedExerciseName,
     };
-    console.log(pump);
+
+    const pumpType = prepump.ex_type.toString();
+    const pumpInt = prepump.intensity.toString();
+    console.log(prepump);
+    //console.log(pumpType);
+    //console.log(pumpInt);
+    
 
 
 
 
 //send request to GET match results from backend 
-fetch('http://127.0.0.1:3309/api/exercise', {
+fetch('http://127.0.0.1:3001/api/exercise', {
     method: 'GET',
     headers:{
         'Content-type': 'application/json',
@@ -81,16 +132,22 @@ fetch('http://127.0.0.1:3309/api/exercise', {
 })
 .then((response) => { return response.json()})
 .then((allEx) => {
+    console.log(allEx)
     const exList = allEx.filter((exercise) => 
     {
-        return exercise.ex_type === pump.ex_type && exercise.intensity === pump.intensity
+       
+       console.log(exercise.ex_type)
+        return exercise.ex_type === pumpType && exercise.intensity === pumpInt
+
     })
-    console.log(exList)
-    workoutSaveBar();
+    function displayEx() {
+    console.log(allEx)
+    workoutSaveBar()
     //Display all exercises
-    for (let i = 0; i < exList.length; i++){
-function displayEx() {
-    console.log(allEx[i])
+    
+    for (let i = 0; i < allEx.length; i++){
+    
+    console.log(exList[i])
     let Container = document.getElementById('exCont');
     const exCard = document.createElement('div');
     exCard.classList.add('d-flex', 'flex-wrap' ,'justify-content-around', 'result-return','hover');
@@ -120,12 +177,13 @@ function displayEx() {
     exCard.appendChild(exName);
     exCard.appendChild(exInt);
 }
-
+    }
 displayEx();
+
 document
 .querySelector("#saveBtn")
 .addEventListener("click", workoutSubmit)
-}
+
 })
 }
 
