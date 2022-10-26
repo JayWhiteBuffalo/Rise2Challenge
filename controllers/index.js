@@ -9,6 +9,7 @@ router.use("/", homeRoutes);
 router.use("/api", apiRoutes);
 router.use("/user-info", userInfoRoutes);
 router.use('/build-workout', workoutPageRoutes );
+router.use('/your-page', yourPageRoutes);
 
 router.use((req, res) => {
   res.status(404).end();

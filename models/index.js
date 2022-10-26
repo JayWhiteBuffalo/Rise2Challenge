@@ -37,9 +37,9 @@ Workout.hasMany(Exercise, {
   foreignKey: "exercise_id",
 });
 
-// Exercise.belongsToMany(User_profile, {
-//   through: Workout,
-//   foreignKey: "exercise_id",
-// });
+Exercise.belongsToMany(User_profile, {
+  through: Workout,
+  foreignKey: "exercise_id",
+});
 
 module.exports = { User, User_profile, Workout, Exercise };

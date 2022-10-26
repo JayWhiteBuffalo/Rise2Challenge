@@ -65,7 +65,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", withAuth, (req, res) => {
+router.get("/:id", (req, res) => {
   Exercise.findOne({
     attributes: { exclude: ["password"] },
     where: {
