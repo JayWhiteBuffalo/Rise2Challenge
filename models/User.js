@@ -39,7 +39,25 @@ User.init(
       validate: {
         len: [4]
       }
-    }
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      validate : {
+        isNumeric: true,
+      }
+    },
+    gender: {
+      type: DataTypes.CHAR(10),
+      validate: {
+        isAlpha: true,
+      }
+    },
+    height: {
+      type: DataTypes.STRING,
+    },
+    weight_in_lbs: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     hooks: {
@@ -63,3 +81,4 @@ User.init(
 );
 
 module.exports = User;
+

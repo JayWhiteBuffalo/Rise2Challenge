@@ -1,56 +1,52 @@
 //contain all user-facing routes, such as homepage and login page
 
-
 //setting up main homepage
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const {User, Workout, User_profile, Exercise} = require("../models");
+const { User, Workout, User_profile, Exercise } = require("../models");
 
-
-router.get('/', (req, res) => {
-    Workout.findAll({
-      attributes: ['id', 'user_id', 'name'],
-      include: [
-        {
-          model: Exercise,
-          attributes: ['id', 'ex_name', 'intensity', 'ex_type']
-        },
-        {
-          model: User,
-          attributes: ['username']
-        },
-      ],
-    })
+router.get("/", (req, res) => {
+  Workout.findAll({
+    attributes: ["id", "name", "workout"],
+    include: [
+      {
+        model: Exercise,
+        attributes: ["id", "ex_name", "intensity", "ex_type"],
+      },
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
     .then((dbWorkoutData) => {
-      const workouts = dbWorkoutData.map((workout) => workout.get({ plain: true }));
+      const workouts = dbWorkoutData.map((workout) =>
+        workout.get({ plain: true })
+      );
 
-      res.render('public', {
+      res.render("public", {
         workouts,
-        loggedIn: req.session.loggedIn
-      })
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json;
     });
-    // other logic...
-});
-
-router.get('/user-info', (req, res) => {
-
+  // other logic...
 });
 
 //get login page
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('login');
-  });
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
 
-  // call signup page
+  res.render("login");
+});
+
+// call signup page
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
@@ -62,29 +58,20 @@ router.get("/signup", (req, res) => {
 
 router.get("/build-workout", (req, res) => {
   if (!req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
-  res.render('workout');
+  res.render("workout", { loggedIn: req.session.loggedIn });
 });
 
 router.get("/your-page", (req, res) => {
   if (!req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
-  res.render('your-page');
+  res.render("your-page", { loggedIn: req.session.loggedIn });
 });
 
-router.get('/user-info', (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-    return;
-  }
-
-  res.render('user-info')
-});
-
-  module.exports = router;
+module.exports = router;

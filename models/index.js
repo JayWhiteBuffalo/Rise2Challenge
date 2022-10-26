@@ -1,45 +1,28 @@
-const User = require("./User");
-const User_profile = require("./User_profile");
-const Workout = require("./Workout");
-const Exercise = require("./Exercise");
+const User = require('./user');
+const UserWorkout = require('./UserWorkout');
+const Workout = require('./workout');
+const WorkoutExercise = require('./WorkoutExercise');
+const Exercise = require('./exercise.js');
 
 // ******** Associations *********//
-User.hasMany(Workout, {
-  foreignkey: "user_id",
+User.belongsToMany(Workout, {
+	through: UserWorkout,
+	foreignKey: 'user_id',
 });
 
-Workout.belongsTo(User, {
-  foreignKey: "user_id",
-});
-// Is this right?
 Workout.belongsToMany(User, {
-  through: User_profile,
-  foreignKey: "workout_id",
-});
-// //or this
-// Workout.belongsTo(User_profile, {
-//   foreignKey: "workout_id",
-// });
-
-User.hasOne(User_profile, {
-  foreignKey: "user_id",
+	through: UserWorkout,
+	foreignKey: 'workout_id',
 });
 
-User_profile.belongsTo(User, {
-  foreignKey: "user_id",
+Workout.belongsToMany(Exercise, {
+	through: WorkoutExercise,
+	foreignKey: 'workout_id',
 });
 
-User_profile.hasMany(Workout, {
-  foreignKey: "workout_id",
+Exercise.belongsToMany(Workout, {
+	through: WorkoutExercise,
+	foreignKey: 'exercise_id',
 });
 
-Workout.hasMany(Exercise, {
-  foreignKey: "exercise_id",
-});
-
-// Exercise.belongsToMany(User_profile, {
-//   through: Workout,
-//   foreignKey: "exercise_id",
-// });
-
-module.exports = { User, User_profile, Workout, Exercise };
+module.exports = { User, UserWorkout, Workout, Exercise, WorkoutExercise };

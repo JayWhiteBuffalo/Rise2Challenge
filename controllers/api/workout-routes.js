@@ -1,81 +1,80 @@
-const router = require("express").Router();
-const { User, Exercise, User_profile } = require("../../models");
-const Workout = require("../../models/Workout");
+const router = require('express').Router();
+const {
+	User,
+	Exercise,
+	UserWorkout,
+	WorkoutExercise,
+	Workout,
+} = require('../../models');
 
 // get all Workouts
-router.get("/", (req, res) => {
-  Workout.findAll({
-    attributes: ["id", "user_id", "name", "exercise_list"],
-    include: [
-      {
-        model: User,
-        attributes: ["id", "username", "email"],
-      },
-      {
-        mode: Exercise,
-        attributes: ["id", "name", "description", "ex_type"],
-      },
-    ],
-  })
-    .then((dbWorkoutData) => res.json(dbWorkoutData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+router.get('/', (req, res) => {
+	Workout.findAll({
+		// related to exercise through WorkoutExercise
+		include: [
+			{
+				model: Exercise,
+				attributes: ['id', 'ex_name', 'intensity', 'ex_type'],
+			},
+		],
+	})
+		.then((dbWorkoutData) => res.json(dbWorkoutData))
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 });
 
 // find one workout
-router.get("/:id", (req, res) => {
-  Workout.findOne({
-    where: {
-      id: req.params.id
-    },
-    attributes: ["id", "user_id", "name", "exercise_list"],
-    include: [
-      {
-        model: User,
-        attributes: ["id", "username", "email"],
-      },
-      {
-        mode: Exercise,
-        attributes: ["id", "name", "description", "ex_type"],
-      },
-    ],
-  })
-  .then(dbWorkoutData => {
-    if (!dbWorkoutData) {
-      res.status(404).json({ message: 'No workout found with this id' });
-      return;
-    }
-    res.json(dbWorkoutData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+router.get('/:id', (req, res) => {
+	Workout.findOne({
+		where: {
+			id: req.params.id,
+		},
+		include: [
+			{
+				model: Exercise,
+				through: WorkoutExercise,
+				attributes: ['id', 'ex_name', 'intensity', 'ex_type'],
+			},
+		],
+	})
+		.then((dbWorkoutData) => {
+			if (!dbWorkoutData) {
+				res.status(404).json({ message: 'No workout found with this id' });
+				return;
+			}
+			res.json(dbWorkoutData);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 });
 
 // test post
-// POST /api/users
+// POST /api/workout
 router.post('/', (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-  Workout.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password
-  })
-  .then(dbWorkoutData => {
-    req.session.save(() => {
-      req.session.user_id = dbWorkoutData.id;
-      req.session.username = dbWorkoutData.username;
-      req.session.loggedIn = true;
-  
-      res.json(dbWorkoutData);
-    });
-  })
-  
-
-    });
+	Workout.create(req.body)
+		.then((workout) => {
+			// if there's product tags, we need to create pairings to bulk create in the ProductTag model
+			if (req.body.exerciseIds.length) {
+				const workoutExerciseIdArr = req.body.exerciseIds.map((exercise_id) => {
+					return {
+						workout_id: workout.id,
+						exercise_id,
+					};
+				});
+				return WorkoutExercise.bulkCreate(workoutExerciseIdArr);
+			}
+			res.status(200).json(workout);
+		})
+		.then((workoutExerciseIds) => res.status(200).json(workoutExerciseIds))
+		.catch((err) => {
+			console.log(err);
+			res.status(400).json(err);
+		});
+});
 
 //Create New Workout
 // router.post('/', (req, res) => {
@@ -112,22 +111,22 @@ router.post('/', (req, res) => {
 
 //Delete workout
 router.delete('/:id', (req, res) => {
-  Workout.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbWorkoutData => {
-      if (!dbWorkoutData) {
-        res.status(404).json({ message: 'No workout found with this id' });
-        return;
-      }
-      res.json(dbWorkoutData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+	Workout.destroy({
+		where: {
+			id: req.params.id,
+		},
+	})
+		.then((dbWorkoutData) => {
+			if (!dbWorkoutData) {
+				res.status(404).json({ message: 'No workout found with this id' });
+				return;
+			}
+			res.json(dbWorkoutData);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json(err);
+		});
 });
 
 module.exports = router;

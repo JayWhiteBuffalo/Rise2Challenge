@@ -11,27 +11,20 @@ Workout.init(
       primaryKey: true,
       autoIncrement: true
     },
-    //FK to user id
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references:{
-        model:'user',
-        key:'id'
-      }
-    },
+    // //FK to user id
     name: {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    //Getting STRING with a FUNCTION to find choosen EXERCISES
-    //and sending to this excerciseList Attribute as an ARRAY
+    workout: {
+      type: DataTypes.JSON,
+    },
     // exercise_list: {
-    //   type: DataTypes.ARRAY(DataTypes.INTEGER),
-    //   references: {
-    //     model: 'Exercise',
-    //     key: 'id'
-    //   }
+    // type: DataTypes.ARRAY(DataTypes.INTEGER),
+    // references: {
+    // model: 'exercise',
+    // key: 'id'
+    // }
     // }
 },
 {
