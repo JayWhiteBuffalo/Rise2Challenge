@@ -2,23 +2,24 @@
     <h2 class="yp-head">
         Welcome back, {{user.username}}!
     </h2>
-        <p class="yp-info">Age: {{user_profile.age}}</p>
-        <p class="yp-info">Weight: {{user_profile.gender}}</p>
-        <p class="yp-info">Height: {{user_profile.height}}</p>
-        <p class="yp-info">Weight: {{user_profile.weight}}</p>
+        <p class="yp-info">Age: {{user.age}}</p>
+        <p class="yp-info">Weight: {{user.gender}}</p>
+        <p class="yp-info">Height: {{user.height}}</p>
+        <p class="yp-info">Weight: {{user.weight}}</p>
 </div>
 
 <div class="container text-center counter-cont">
-    <span>
-        <h4 class="workout-counter">Workouts with Rise2Challenge: <p class="counter">3</p></h4>
-    </span>
-</div>
-
-<div class="container text-center">
     <div class="d-flex justify-content-between">
         <h4 class="result-head">Your Saved Workout's</h4>
         <span class="new-workout-span"><p>Want to create a new workout?<a href="/workout"> Click here!</a></p></span>
     </div>
+    {{!-- <span>
+        <h4 class="workout-counter">Workouts with Rise2Challenge: <p class="counter">3</p></h4>
+    </span> --}}
+</div>
+
+<div class="container text-center">
+
     {{#each workout}}
 
     {{> yp.workout}}
