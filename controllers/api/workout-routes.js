@@ -2,19 +2,19 @@ const router = require('express').Router();
 const {
 	User,
 	Exercise,
-	User_workout,
-	Workout_exercise,
+	UserWorkout,
+	WorkoutExercise,
+	Workout,
 } = require('../../models');
-const Workout = require('../../models/Workout');
 
 // get all Workouts
 router.get('/', (req, res) => {
 	Workout.findAll({
-		// related to exercise through Workout_exercise
+		// related to exercise through WorkoutExercise
 		include: [
 			{
 				model: Exercise,
-				as: 'exercise',
+				attributes: ['id', 'ex_name', 'intensity', 'ex_type'],
 			},
 		],
 	})
@@ -34,7 +34,8 @@ router.get('/:id', (req, res) => {
 		include: [
 			{
 				model: Exercise,
-				through: Workout_exercise,
+				through: WorkoutExercise,
+				attributes: ['id', 'ex_name', 'intensity', 'ex_type'],
 			},
 		],
 	})
@@ -64,7 +65,7 @@ router.post('/', (req, res) => {
 						exercise_id,
 					};
 				});
-				return Workout_exercise.bulkCreate(workoutExerciseIdArr);
+				return WorkoutExercise.bulkCreate(workoutExerciseIdArr);
 			}
 			res.status(200).json(workout);
 		})

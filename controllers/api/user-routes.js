@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Workout, Exercise, User_workout } = require('../../models');
+const { User, Workout, Exercise, UserWorkout } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET /api/users
@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
 router.post('/login', (req, res) => {
 	User.findOne({
 		where: {
-			username: req.body.username,
+			email: req.body.email,
 		},
 	}).then((dbUserData) => {
 		if (!dbUserData) {

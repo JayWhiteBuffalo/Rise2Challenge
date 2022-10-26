@@ -6,11 +6,6 @@ const withAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
 	Exercise.findAll({
 		attributes: ['id', 'ex_name', 'intensity', 'ex_type'],
-		include: [
-			{
-				model: Workout,
-			},
-		],
 	})
 		.then((dbExerciseData) => res.json(dbExerciseData))
 		.catch((err) => {
