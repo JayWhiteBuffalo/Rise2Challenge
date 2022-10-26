@@ -20,14 +20,14 @@ User_profile.init(
         key:'id'
       }
     },
-    workout_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'workout',
-        key: 'id'
-      }
-    },
+    // workout_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: 'workout',
+    //     key: 'id'
+    //   }
+    // },
     age: {
       type: DataTypes.INTEGER,
       validate : {

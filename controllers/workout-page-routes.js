@@ -5,7 +5,7 @@ const withAuth = require("../utils/auth");
 // get all Workouts
 router.get("/", (req, res) => {
   Workout.findAll({
-    attributes: ["id", "user_id", "name", "exercise_list"],
+    attributes: ["id", "user_id", "name"],
     include: [
       {
         model: User,
@@ -29,7 +29,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "user_id", "name", "exercise_list"],
+    attributes: ["id", "user_id", "name"],
     include: [
       {
         model: User,

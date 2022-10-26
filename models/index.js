@@ -17,9 +17,9 @@ Workout.belongsToMany(User, {
   foreignKey: "workout_id",
 });
 // //or this
-Workout.belongsTo(User_profile, {
-  foreignKey: "workout_id",
-});
+// Workout.belongsTo(User_profile, {
+//   foreignKey: "workout_id",
+// });
 
 User.hasOne(User_profile, {
   foreignKey: "user_id",
@@ -37,9 +37,9 @@ Workout.hasMany(Exercise, {
   foreignKey: "exercise_id",
 });
 
-Exercise.belongsToMany(User_profile, {
-  through: Workout,
-  foreignKey: "exercise_id",
-});
+// Exercise.belongsToMany(User_profile, {
+//   through: Workout,
+//   foreignKey: "exercise_id",
+// });
 
 module.exports = { User, User_profile, Workout, Exercise };
