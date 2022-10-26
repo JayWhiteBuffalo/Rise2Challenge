@@ -1,7 +1,8 @@
-const User = require("./User");
-const User_profile = require("./User_profile");
-const Workout = require("./Workout");
-const Exercise = require("./Exercise");
+const User = require("./user");
+const User_profile = require("./user_profile")
+const Workout = require("./workout");
+const Workout_exercise = require("./workout_exercise")
+const Exercise = require("./exercise.js");
 
 // ******** Associations *********//
 User.hasMany(Workout, {
@@ -33,13 +34,19 @@ User_profile.hasMany(Workout, {
   foreignKey: "workout_id",
 });
 
-Workout.hasMany(Exercise, {
-  foreignKey: "exercise_id",
+Exercise.belongsTo(Workout, {
+  through: Workout_exercise,
+  foreignKey: "exercise_id"
 });
 
-Exercise.belongsToMany(User_profile, {
-  through: Workout,
-  foreignKey: "exercise_id",
+Workout.belongsTo(Exercise, {
+  through: Workout_exercise,
+  foreignKey: "workout_id"
 });
 
-module.exports = { User, User_profile, Workout, Exercise };
+// Exercise.belongsToMany(User_profile, {
+// through: Workout,
+//   foreignKey: "exercise_id",
+// });
+
+module.exports = { User, User_profile, Workout, Exercise, Workout_exercise };

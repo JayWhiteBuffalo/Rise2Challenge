@@ -23,10 +23,10 @@
         </div>
         <div>
             <nav>
-              <a class="nav-a" href="/credits">Public</a>
+              <a class="nav-a" href="/">Public</a>
               {{#if loggedIn}}
-              <a class="nav-a" href="/workouts">Workout</a>
-              <a class="nav-a" href="/yourpage">Your Page</a>
+              <a class="nav-a" href="/build-workout">Workout</a>
+              <a class="nav-a" href="/your-page">Your Page</a>
               <button type="button" id="logout" class="btn btn-sm logout-btn">Logout</button>
               {{else}}
               <a class="nav-a" href="/login">Login</a>
@@ -45,7 +45,7 @@
     <div class="container text-center justify-content-end footer-div">
         <span>
             <p class="footer-p">Thank you for using Rise2Challenge<br>For more work, checkout our Githubs:</p>
-            <a class="footer-nav" href="kainesgithub.com">Kaine, </a>
+            <a class="footer-nav" href="https://github.com/kainew5843">Kaine, </a>
             <a class="footer-nav" href="https://github.com/mamadou1991">Mamadou, </a>
             <a class="footer-nav" href="https://github.com/JayWhiteBuffalo">Mason, </a>
             <a class="footer-nav" href="https://github.com/PhuongHoang68">Phuong, </a>
@@ -55,5 +55,6 @@
   </footer>
 
   {{#if loggedIn}}
-  <script src="/javascript/logout.js"
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>

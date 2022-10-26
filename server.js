@@ -4,7 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 
 const app = express();
-const PORT = process.env.PORT || 3309;
+const PORT = process.env.PORT || 3001;
 
 // Add Access Control Allow Origin headers
 app.use((req, res, next) => {
@@ -23,7 +23,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
 const sess = {
-    secret: process.env.Secret,
+    secret: 'Super secret secret',
     cookie: {
       expires: 1200000
     },

@@ -1,5 +1,5 @@
-// Post's data selected from workout and exercise dropdowns
-// card is displayed in results-conts
+// // Post's data selected from workout and exercise dropdowns
+// // card is displayed in results-conts
 
 const handleSubmit = (event) => {
 //Collect exercise data from user checkboxes
@@ -22,24 +22,24 @@ const handleSubmit = (event) => {
         }
     });
 
-    const pump = {
-        workoutName: document.querySelector('.return-text').value,
-        workout: selectedWorkouts,
+//     const pump = {
+//         workoutName: document.querySelector('.return-text').value,
+//         workout: selectedWorkouts,
 
-        exerciseName: document.querySelector('.return-text').value,
-        exercise: selectedExercises,
-    };
-    console.log(pump);
+//         exerciseName: document.querySelector('.return-text').value,
+//         exercise: selectedExercises,
+//     };
+//     console.log(pump);
 
 
-    fetch('/api/...', {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-        },
-        body: JSON.stringify(pump),
-    })
-}
+//     fetch('/api/...', {
+//         method: 'POST',
+//         headers: {
+//             'Content-type': 'application/json',
+//         },
+//         body: JSON.stringify(pump),
+//     })
+// }
 
 //Display exercise
 

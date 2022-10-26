@@ -303,25 +303,36 @@ input{
     outline: none;
     border: none;
 }
-.multi-selector, .multi-selector-2{
+.multi-selector, .multi-selector-2, .multi-selector-3, .multi-selector-4{
     width: max-content;
     margin: auto;
 }
-.select-field, .select-field-2{
+
+.multi-selector-3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.multi-selector-4 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.select-field, .select-field-2, .select-field-4, .select-field-4{
     border: 1px solid rgb(187, 187, 187);
 }
-.select-field, .select-field-2, .workout-task,.exercise-task, .list, .list-2{
+.select-field, .select-field-2, .select-field-3, .select-field-4, .workout-task,.exercise-task, .list, .list-2, .list-3, .list-4{
     width: 100%;
     background-color: white;
     padding: 0.3rem;
 }
-.list, .list-2 {
+.list, .list-2, .list-3, .list-4 {
     box-shadow: 0 30px 60px rgb(0,0,0,0.2);
     max-height: 200px;
     overflow: auto;
     display: none;
 }
-.down-arrow, .down-arrow-2{
+.down-arrow, .down-arrow-2, .down-arrow-3, .down-arrow-4{
     font-size: 1.2rem;
     display: inline-block;
     cursor: pointer;
@@ -393,14 +404,19 @@ input{
 }
 
 .create-workout-input, .create-exercise-input {
-    width: 50%;
-    height: 40px;
+    width: 60.5%;
+    height: 50px;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .create-workout-submit, .create-exercise-submit {
     background-color: #026700;
     color: #F4F3F3;
+    width: 70%;
+    padding-top: 10px;
+
+
 }
 
 .create-workout-submit:hover {
@@ -447,6 +463,10 @@ input{
     h1 {
         font-size: 40px;
     }
+
+    .create-workout-input {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 850px) {
@@ -456,5 +476,18 @@ input{
 
     .side-bar-head {
         padding: 10px;
+    }
+
+    .create-workout-submit {
+        max-width: 40%;
+        max-height: 20%;
+    }
+
+    .create-workout-input {
+        width: 55%;
+    }
+
+    .multi-selector-3, .multi-selector-4 {
+        width: 50%;
     }
 }

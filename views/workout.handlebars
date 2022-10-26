@@ -1,0 +1,68 @@
+<div class="container d-flex flex-wrap col-12 main-cont">
+    <div class="col-12 col-lg-4 side-bar justify-content-center">
+        <div class="side-bar-head align-items-center text-center">
+          <h4 class="byw-head">Build your workout:</h4>
+        </div>
+
+        <!-- with form input -->
+        <div class="side-bar-sub-head text-center">
+          <h5>Focus:</h5>
+        </div>
+        {{> focus}}
+     
+        <div class="side-bar-sub-head text-center">
+          <h5>Intensity:</h5>
+        </div>
+        {{> intensity}}
+
+        <div class="side-bar-sub-head text-center">
+            <div class="submit-btn-cont">
+              <button type="submit" class="btn btn-lg submit-btn">Submit</button>
+            </div>
+        </div>
+
+        <div id="hide-workout" class="hide-workout">
+             <div class="create-workout d-flex flex-wrap justify-content-around">
+              <input type="text" placeholder="Workout name" class="create-workout-input">
+              {{> create-focus}}
+              {{> create-intensity}}
+              <button type="submit" class="btn create-workout-submit">Submit</button>
+             </div>
+           </div>
+
+         <div class="create-workout-cont d-flex flex-wrap justify-content-around">
+            <p class="create-txt">Don't see your workout?</p>
+            <button type="button" id="create-workout" class="btn create-workout-btn">Click here</button>
+         </div>
+      </div>
+
+      <!-- where results copying starts -->
+        <div class="container col-12 col-md-10 col-lg-7 text-center results-cont">
+          <h4 class="result-head">Your Selected workout</h4>
+          <div class="d-flex flex-wrap justify-content-around result-return">
+            {{!-- in here --}}
+
+            {{!-- classes you could use to style cards --}}
+
+            {{!-- <div class="return-text">
+              <h5>Workout:</h5>
+              <p class="workout-return">Arms</p>
+            </div>
+            <div id="return-text">
+              <h5>Exercise Type:</h5>
+              <p id="exercise-return">Bicep Curls</p>
+            </div>
+            <div class="return-text">
+              <h5>Intensity:</h5>
+              <p id="intensity-return">Standard</p> --}}
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/javascript/dropdown.js"></script>
+  <scirpt src="/javascript/workout-submit.js"></scirpt>
+  <script src="/javascript/post-workout.js"></script>

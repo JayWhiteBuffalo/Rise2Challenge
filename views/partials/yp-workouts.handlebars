@@ -1,0 +1,23 @@
+<div class="d-flex flex-wrap justify-content-around result-return-public">
+    <div class="return-text">
+        <h5>Focus:</h5>
+        <p>{{this.ex_type}}</p>
+    </div>
+    <div class="return-text">
+        <h5>Exercise:</h5>
+        <p>{{this.ex_name}}</p>
+    </div>
+    <div class="return-text">
+        <h5>Intensity:</h5>
+        <p>{{this.intensity}}</p>
+    </div>
+    {{!-- <div class="favorite-button-div">
+        <button type="button" class="btn btn-lg fav-btn">Favorite</button>
+    </div> --}}
+    <div class="delete-button-div">
+        <button type="button" class="btn btn-lg delete-btn">Delete</button>
+    </div>
+</div>
+<div class="d-flex justify-content-end">
+    <h5 class="public-date">{{format_date created_at}} </h5>
+</div>
